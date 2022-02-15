@@ -1,0 +1,9 @@
+{
+    "colors": {
+        "background": "#03203A",
+        "backgroundSecond": "#EDF6F9",
+        "primary": "#CD533B",
+        "cancel": "#F22B29",
+        "edit": "#4F9D69"
+    }
+}   
