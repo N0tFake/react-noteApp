@@ -6,6 +6,7 @@ import {Button} from "../components/Button/Button";
 import {IconAdd} from "../components/Icons/Add";
 import {CardNote} from "../components/CardNotes/CardNotes";
 import {TextArea} from "../components/TextArea/TextArea";
+import {EmptyNotes} from "../components/EmptyNotes/EmptyNotes"
 import {BtnDelete} from "../components/CardNotes/BtnDelete";
 import { BtnEdit } from "../components/CardNotes/BtnEdit";
 
@@ -48,7 +49,7 @@ export default function Home() {
 
       <Background>
         <Container padding='1em'>
-          <Title>Notas</Title>
+          <Title>Notes</Title>
         </Container>
         <Container padding='1em'> 
           { hintTextArea == false 
@@ -59,22 +60,10 @@ export default function Home() {
                     const value = e.target.value
                     setText(value);
                   }}
-                  onKeyPress={(e) => {
-                    /* if(e.key == 'Enter'){
-                      let value = e.target.value;
-                      value = value.replace("\r\n", "\\r\\n")
-                      setText(value)
-                    } */
-                  }}
                 />
               </Container> 
             : null
           }
-
-
-          {/* <Button color={'red'} state={opcEdit} onClick={() => setopcEdit(!opcEdit)} > Testar </Button> */}
-
-          {/* { opcEdit ? <Cont show={opcEdit}> teste </Cont> : null } */}
 
           { hintTextArea == true 
             ?  <Button radius='50px' color={ThemesApp.colors.background} onClick={() => setHintTextArea(!hintTextArea)}>
@@ -97,22 +86,27 @@ export default function Home() {
 
         </Container>
 
-        <Container>
-          <Grid>
-            {notes.map( (data)=>{
-              return(
-                <CardNote key={data.id} >
-                  <p id="p-card" >{
-                    data.content
-                  }</p>
-                  <BtnEdit className="ButtonEdit"> <IconEdit /> </BtnEdit>
-                  <BtnDelete className="ButtonDelete" onClick={ () => deleteNote(data.id) }><IconTrash /></BtnDelete>
-                </CardNote>
-              );
-            }) }
-          </Grid>
-        </Container>
-
+            {notes.length == 0 
+              ? <EmptyNotes>
+                <h1>Empty Notes</h1>
+              </EmptyNotes>
+              
+              : <Container>
+                  <Grid>
+                    {notes.map( (data)=>{
+                      return(
+                        <CardNote key={data.id} >
+                          <p align="left" id="p-card" >{
+                            data.content
+                          }</p>
+                          <BtnEdit className="ButtonEdit"> <IconEdit /> </BtnEdit>
+                          <BtnDelete className="ButtonDelete" onClick={ () => deleteNote(data.id) }><IconTrash /></BtnDelete>
+                        </CardNote>
+                      );
+                    })}
+                  </Grid>
+                </Container>
+            }
 
       </Background>
 
