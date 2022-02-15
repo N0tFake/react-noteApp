@@ -7,8 +7,15 @@ export const CardNote = styled.div`
     height: 250px;
     border-radius: 10px;
     margin-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
     background: ${ThemesApp.colors.backgroundSecond};
     position: relative;
+
+    word-wrap: break-word;
+    white-space: initial; 
+    overflow: hidden;
+    text-overflow: '\n'; 
 
     &:hover{
         border: 2px solid ${ThemesApp.colors.primary};
